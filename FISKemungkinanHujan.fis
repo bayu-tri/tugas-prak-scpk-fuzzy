@@ -1,0 +1,57 @@
+[System]
+Name='FISKemungkinanHujan'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=11
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Suhu'
+Range=[25 45]
+NumMFs=3
+MF1='Rendah':'trimf',[16.67 25 28]
+MF2='Sedang':'trimf',[28 30.5 33]
+MF3='Tinggi':'trimf',[33 45 45]
+
+[Input2]
+Name='KecepatanAngin'
+Range=[0 50]
+NumMFs=3
+MF1='Lambat':'gaussmf',[8.845 -6.94e-16]
+MF2='Sedang':'gaussmf',[8.845 25]
+MF3='Cepat':'gaussmf',[8.845 50]
+
+[Input3]
+Name='KetebalanAwan'
+Range=[0 20]
+NumMFs=3
+MF1='Tipis':'trimf',[-8.334 0 7]
+MF2='Sedang':'trimf',[7 10 14]
+MF3='Tebal':'trimf',[14 20 28.34]
+
+[Output1]
+Name='KemungkinanHujan'
+Range=[0 1]
+NumMFs=3
+MF1='Rendah':'trimf',[0 0.15 0.3]
+MF2='Sedang':'trimf',[0.3 0.5 0.7]
+MF3='Tinggi':'trimf',[0.7 0.85 1]
+
+[Rules]
+3 1 1, 1 (1) : 1
+3 2 1, 1 (1) : 1
+3 3 1, 1 (1) : 1
+2 1 2, 2 (1) : 1
+2 1 3, 3 (1) : 1
+1 1 3, 3 (1) : 1
+1 1 2, 3 (1) : 1
+1 1 1, 2 (1) : 1
+2 2 1, 1 (1) : 1
+2 2 2, 2 (1) : 1
+2 2 3, 2 (1) : 1
